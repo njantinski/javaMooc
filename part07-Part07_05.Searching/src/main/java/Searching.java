@@ -1,4 +1,4 @@
-
+    
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -40,14 +40,34 @@ public class Searching {
         } else {
             System.out.println("Found it! " + books.get(binarySearchId));
         }
+      
 
     }
 
     public static int linearSearch(ArrayList<Book> books, int searchedId) {
+        for(int i = 0; i < books.size();i++){
+            if(books.get(i).getId() == searchedId){
+                return i;
+            }
+        }
         return -1;
     }
 
     public static int binarySearch(ArrayList<Book> books, long searchedId) {
+        int begin = 0;
+        int end = books.size() - 1;
+        int middle;
+        while(begin <= end){
+            middle = (begin + end) / 2;
+            if(books.get(middle).getId() == (int)searchedId){
+                return middle;
+            }
+            else if(books.get((int)middle).getId() < searchedId){
+                begin = middle +1;
+            } else{
+                end = middle -1;
+            }
+        }
         return -1;
     }
 }
